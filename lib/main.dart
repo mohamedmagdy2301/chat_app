@@ -19,9 +19,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const LoginPage(),
       routes: {
-        LoginPage.id: (context) => const LoginPage(),
-        RegisterPage.id: (context) => const RegisterPage(),
         HomePage.id: (context) => const HomePage(),
+        LoginPage.id: (context) => LoginPage(),
+        RegisterPage.id: (context) => RegisterPage(),
       },
     );
   }

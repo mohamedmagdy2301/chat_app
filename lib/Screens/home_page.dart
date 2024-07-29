@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: kPrimaryColor,
       appBar: AppBar(
-        title: const Text('Chat App'),
+        title: const Text('Chat App', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: kPrimaryColor,
         elevation: 0,

@@ -27,14 +27,16 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 50),
-            const TextFieldBuild(
+            TextFieldBuild(
               labelText: 'Email',
               hintText: 'Enter your Email',
+              onChanged: (data) {},
             ),
             const SizedBox(height: 20),
-            const TextFieldBuild(
+            TextFieldBuild(
               labelText: 'Password',
               hintText: 'Enter your Password',
+              onChanged: (data) {},
             ),
             const SizedBox(height: 20),
             ButtonBuild(

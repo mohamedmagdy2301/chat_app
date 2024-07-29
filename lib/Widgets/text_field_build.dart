@@ -5,12 +5,18 @@ class TextFieldBuild extends StatelessWidget {
     super.key,
     required this.labelText,
     required this.hintText,
+    required this.onChanged,
   });
   final String labelText;
   final String hintText;
+  final void Function(String)? onChanged;
+
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: onChanged,
+      cursorColor: Colors.white,
+      style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: const TextStyle(color: Colors.grey, fontSize: 13),
