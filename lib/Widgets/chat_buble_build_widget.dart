@@ -5,8 +5,10 @@ class ChatBubleBuildWidget extends StatelessWidget {
   const ChatBubleBuildWidget({
     super.key,
     required this.message,
+    required this.time,
   });
   final String message;
+  final String time;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +38,9 @@ class ChatBubleBuildWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            const Text(
-              '10:30 AM',
-              style: TextStyle(
+            Text(
+              time,
+              style: const TextStyle(
                 color: Colors.grey,
                 fontSize: 13,
               ),
