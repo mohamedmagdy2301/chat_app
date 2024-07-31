@@ -22,6 +22,7 @@ class ChatPage extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
+              reverse: true,
               itemCount: 10,
               itemBuilder: (context, index) {
                 return const ChatBubleBuildWidget(
@@ -39,7 +40,14 @@ class ChatPage extends StatelessWidget {
                 fillColor: Colors.grey[300],
                 prefixIcon: const Icon(Icons.emoji_emotions),
                 suffixIcon: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    users.add({
+                      'message': controller.text,
+                      'time': DateTime.now().toString(),
+                      'sender': 'user1',
+                    });
+                    controller.clear();
+                  },
                   icon: Icon(
                     Icons.send,
                     color: kPrimaryColor,
