@@ -8,11 +8,9 @@ class TextFieldChatPageBuildWidget extends StatelessWidget {
   TextFieldChatPageBuildWidget({
     super.key,
     required this.messages,
-    required this.controllerScroll,
   });
 
   TextEditingController controllerTextField = TextEditingController();
-  final ScrollController controllerScroll;
 
   final CollectionReference<Object?> messages;
 
@@ -31,11 +29,6 @@ class TextFieldChatPageBuildWidget extends StatelessWidget {
                 );
           controllerTextField.clear();
           hideKeyboard(context);
-          controllerScroll.animateTo(
-            0,
-            duration: const Duration(microseconds: 800000),
-            curve: Curves.easeIn,
-          );
         },
         decoration: InputDecoration(
           filled: true,
@@ -53,11 +46,6 @@ class TextFieldChatPageBuildWidget extends StatelessWidget {
                     );
               controllerTextField.clear();
               hideKeyboard(context);
-              controllerScroll.animateTo(
-                0,
-                duration: const Duration(microseconds: 800000),
-                curve: Curves.easeIn,
-              );
             },
             icon: Icon(
               Icons.send,

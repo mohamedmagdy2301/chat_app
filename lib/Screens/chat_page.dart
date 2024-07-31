@@ -7,9 +7,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
-  ChatPage({super.key});
+  const ChatPage({super.key});
   static const id = 'home_page';
-  ScrollController controllerScroll = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +20,9 @@ class ChatPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child:
-                showMessageInListViewFromFireBase(messages, controllerScroll),
+            child: showMessageInListViewFromFireBase(messages),
           ),
-          TextFieldChatPageBuildWidget(
-            messages: messages,
-            controllerScroll: controllerScroll,
-          )
+          TextFieldChatPageBuildWidget(messages: messages)
         ],
       ),
     );
