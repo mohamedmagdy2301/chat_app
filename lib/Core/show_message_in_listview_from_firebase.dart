@@ -24,12 +24,17 @@ StreamBuilder<QuerySnapshot<Object?>> showMessageInListViewFromFireBase(
               Map<String, dynamic> data =
                   snapshot.data!.docs[index].data()! as Map<String, dynamic>;
 
-              return ChatBubleBuildWidget(
-                message: data['message'],
-                time: int.parse(data['time'].toString().substring(11, 13)) <= 12
-                    ? "${data['time'].toString().substring(11, 16)} am"
-                    : "${data['time'].toString().substring(11, 16)} pm",
-              );
+              return 5 < 10
+                  ? ChatBubbleBuildWidget(
+                      message: data['message'],
+                      time: data['time'].toString(),
+                      isSender: true,
+                    )
+                  : ChatBubbleBuildWidget(
+                      message: data['message'],
+                      time: data['time'].toString(),
+                      isSender: false,
+                    );
             },
           ),
         );
