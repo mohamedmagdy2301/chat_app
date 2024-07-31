@@ -8,9 +8,12 @@ class TextFieldChatPageBuildWidget extends StatelessWidget {
   TextFieldChatPageBuildWidget({
     super.key,
     required this.messages,
+    required this.controllerScroll,
   });
 
-  TextEditingController controller = TextEditingController();
+  TextEditingController controllerTextField = TextEditingController();
+  final ScrollController controllerScroll;
+
   final CollectionReference<Object?> messages;
 
   @override
@@ -18,11 +21,21 @@ class TextFieldChatPageBuildWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       child: TextField(
-        controller: controller,
+        controller: controllerTextField,
         onSubmitted: (value) {
-          value.isEmpty ? null : sendMessageToFireBase(messages);
-          controller.clear();
+          value.isEmpty
+              ? null
+              : sendMessageToFireBase(
+                  messages,
+                  controllerTextField,
+                );
+          controllerTextField.clear();
           hideKeyboard(context);
+          controllerScroll.animateTo(
+            0,
+            duration: const Duration(microseconds: 800000),
+            curve: Curves.easeIn,
+          );
         },
         decoration: InputDecoration(
           filled: true,
@@ -32,9 +45,19 @@ class TextFieldChatPageBuildWidget extends StatelessWidget {
           hintStyle: const TextStyle(color: Colors.grey),
           suffixIcon: IconButton(
             onPressed: () {
-              controller.text.isEmpty ? null : sendMessageToFireBase(messages);
-              controller.clear();
+              controllerTextField.text.isEmpty
+                  ? null
+                  : sendMessageToFireBase(
+                      messages,
+                      controllerTextField,
+                    );
+              controllerTextField.clear();
               hideKeyboard(context);
+              controllerScroll.animateTo(
+                0,
+                duration: const Duration(microseconds: 800000),
+                curve: Curves.easeIn,
+              );
             },
             icon: Icon(
               Icons.send,

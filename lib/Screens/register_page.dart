@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, must_be_immutable
 
 import 'package:chat_app/Core/hide_keyboard.dart';
-import 'package:chat_app/Core/show_sank_bar.dart';
+import 'package:chat_app/Core/show_sankbar.dart';
 import 'package:chat_app/Widgets/button_build.dart';
 import 'package:chat_app/Widgets/text_field_build.dart';
 import 'package:firebase_auth/firebase_auth.dart';

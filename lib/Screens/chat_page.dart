@@ -1,8 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:chat_app/Core/constant.dart';
-import 'package:chat_app/Core/hide_keyboard.dart';
-import 'package:chat_app/Core/send_message_to_firebase.dart';
 import 'package:chat_app/Core/show_message_in_listview_from_firebase.dart';
 import 'package:chat_app/Widgets/appbar_chat_build_widget.dart';
 import 'package:chat_app/Widgets/text_field_chat_page_build_widget.dart';
@@ -10,8 +7,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
-  const ChatPage({super.key});
+  ChatPage({super.key});
   static const id = 'home_page';
+  ScrollController controllerScroll = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     CollectionReference messages =
@@ -22,9 +21,13 @@ class ChatPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: showMessageInListViewFromFireBase(messages),
+            child:
+                showMessageInListViewFromFireBase(messages, controllerScroll),
           ),
-          TextFieldChatPageBuildWidget(messages: messages)
+          TextFieldChatPageBuildWidget(
+            messages: messages,
+            controllerScroll: controllerScroll,
+          )
         ],
       ),
     );

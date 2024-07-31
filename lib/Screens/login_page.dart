@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, must_be_immutable
 
-import 'package:chat_app/Screens/home_page.dart';
+import 'package:chat_app/Screens/chat_page.dart';
 import 'package:chat_app/Screens/register_page.dart';
 import 'package:chat_app/Widgets/button_build.dart';
 import 'package:chat_app/Widgets/text_field_build.dart';

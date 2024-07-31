@@ -15,14 +15,14 @@ class ChatBubleBuildWidget extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-        padding: const EdgeInsets.only(top: 15, bottom: 8, left: 15, right: 18),
+        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
+        padding: const EdgeInsets.only(top: 12, bottom: 5, left: 15, right: 18),
         decoration: BoxDecoration(
           color: kPrimaryColor,
           borderRadius: const BorderRadius.only(
-            bottomRight: Radius.circular(20),
-            topRight: Radius.circular(20),
-            topLeft: Radius.circular(20),
+            bottomRight: Radius.circular(26),
+            topRight: Radius.circular(18),
+            topLeft: Radius.circular(26),
           ),
         ),
         child: Column(
@@ -37,12 +37,12 @@ class ChatBubleBuildWidget extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 5),
             Text(
               time,
               style: const TextStyle(
                 color: Colors.grey,
-                fontSize: 13,
+                fontSize: 12,
               ),
             ),
           ],
