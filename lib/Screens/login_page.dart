@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, must_be_immutable
 
+import 'package:chat_app/Core/hide_keyboard.dart';
+import 'package:chat_app/Core/show_sankbar.dart';
 import 'package:chat_app/Screens/chat_page.dart';
 import 'package:chat_app/Screens/register_page.dart';
 import 'package:chat_app/Widgets/button_build.dart';
@@ -57,36 +59,37 @@ class LoginPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 ButtonBuild(
-                    title: 'Login',
-                    onTap: () async {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, ChatPage.id, (route) => false);
+                  title: 'Login',
+                  onTap: () async {
+                    hideKeyboard(context);
+                    if (formKey.currentState!.validate()) {
+                      try {
+                        await signInUser();
+                        showSnackBar(context, "Login successfully ✅");
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          ChatPage.id,
+                          (route) => false,
+                          arguments: email,
+                        );
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'user-not-found') {
+                          showSnackBar(
+                              context, "No user found for that email ❌");
+                        } else if (e.code == 'wrong-password') {
+                          showSnackBar(context, "Wrong password ❌");
+                        } else {
+                          showSnackBar(context,
+                              "${e.toString().substring(e.toString().indexOf("]") + 1, e.toString().length)} ❌");
+                        }
+                      } catch (e) {
+                        showSnackBar(context, "There is a error ,try again ❌");
+                      }
+                    } else {
+                      showSnackBar(context, "Please fill all the fields ❌");
                     }
-                    //   hideKeyboard(context);
-                    //   if (formKey.currentState!.validate()) {
-                    //     try {
-                    //       await signInUser();
-                    //       showSnackBar(context, "Login successfully ✅");
-                    //       Navigator.pushNamedAndRemoveUntil(
-                    //           context, HomePage.id, (route) => false);
-                    //     } on FirebaseAuthException catch (e) {
-                    //       if (e.code == 'user-not-found') {
-                    //         showSnackBar(
-                    //             context, "No user found for that email ❌");
-                    //       } else if (e.code == 'wrong-password') {
-                    //         showSnackBar(context, "Wrong password ❌");
-                    //       } else {
-                    //         showSnackBar(context,
-                    //             "${e.toString().substring(e.toString().indexOf("]") + 1, e.toString().length)} ❌");
-                    //       }
-                    //     } catch (e) {
-                    //       showSnackBar(context, "There is a error ,try again ❌");
-                    //     }
-                    //   } else {
-                    //     showSnackBar(context, "Please fill all the fields ❌");
-                    //   }
-                    // },
-                    ),
+                  },
+                ),
                 const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -123,7 +126,9 @@ class LoginPage extends StatelessWidget {
   }
 
   Future<void> signInUser() async {
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email!, password: password!);
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email!,
+      password: password!,
+    );
   }
 }

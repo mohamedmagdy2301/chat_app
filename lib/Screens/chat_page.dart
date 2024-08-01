@@ -14,15 +14,15 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     CollectionReference messages =
         FirebaseFirestore.instance.collection('messages');
+    String userEmail = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const AppBarChatBuildWidget(),
       body: Column(
         children: [
           Expanded(
-            child: showMessageInListViewFromFireBase(messages),
-          ),
-          TextFieldChatPageBuildWidget(messages: messages)
+              child: showMessageInListViewFromFireBase(messages, userEmail)),
+          TextFieldChatPageBuildWidget(messages: messages, userEmail: userEmail)
         ],
       ),
     );

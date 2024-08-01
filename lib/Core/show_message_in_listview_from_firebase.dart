@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 StreamBuilder<QuerySnapshot<Object?>> showMessageInListViewFromFireBase(
-    messages) {
+    messages, userEmail) {
   ScrollController controllerScroll = ScrollController();
 
   return StreamBuilder<QuerySnapshot>(
@@ -23,8 +23,7 @@ StreamBuilder<QuerySnapshot<Object?>> showMessageInListViewFromFireBase(
             itemBuilder: (context, index) {
               Map<String, dynamic> data =
                   snapshot.data!.docs[index].data()! as Map<String, dynamic>;
-
-              return 5 < 10
+              return data["user"] != userEmail
                   ? ChatBubbleBuildWidget(
                       message: data['message'],
                       time: data['time'].toString(),

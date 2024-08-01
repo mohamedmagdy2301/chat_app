@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: LoginPage(),
       routes: {
-        ChatPage.id: (context) => ChatPage(),
+        ChatPage.id: (context) => const ChatPage(),
         LoginPage.id: (context) => LoginPage(),
         RegisterPage.id: (context) => RegisterPage(),
       },

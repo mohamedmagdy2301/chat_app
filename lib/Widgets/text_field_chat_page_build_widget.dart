@@ -8,11 +8,13 @@ class TextFieldChatPageBuildWidget extends StatelessWidget {
   TextFieldChatPageBuildWidget({
     super.key,
     required this.messages,
+    required this.userEmail,
   });
 
   TextEditingController controllerTextField = TextEditingController();
 
   final CollectionReference<Object?> messages;
+  final String userEmail;
 
   @override
   Widget build(BuildContext context) {
@@ -21,29 +23,32 @@ class TextFieldChatPageBuildWidget extends StatelessWidget {
       child: TextField(
         controller: controllerTextField,
         onSubmitted: (value) {
-          value.isEmpty
-              ? null
-              : sendMessageToFireBase(
-                  messages,
-                  controllerTextField,
-                );
+          value.isNotEmpty
+              ? sendMessageToFireBase(messages, controllerTextField, userEmail)
+              : null;
           controllerTextField.clear();
           hideKeyboard(context);
         },
         decoration: InputDecoration(
           filled: true,
-          fillColor: Colors.grey[300],
-          prefixIcon: const Icon(Icons.emoji_emotions),
-          hintText: 'Type a message',
-          hintStyle: const TextStyle(color: Colors.grey),
+          fillColor: const Color.fromARGB(173, 224, 224, 224),
+          hintText: 'Type a message...',
+          hintStyle: const TextStyle(color: Color.fromARGB(255, 136, 136, 136)),
+          contentPadding: const EdgeInsets.all(10),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.grey, width: .8),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.grey, width: .8),
+          ),
           suffixIcon: IconButton(
             onPressed: () {
-              controllerTextField.text.isEmpty
-                  ? null
-                  : sendMessageToFireBase(
-                      messages,
-                      controllerTextField,
-                    );
+              controllerTextField.text.isNotEmpty
+                  ? sendMessageToFireBase(
+                      messages, controllerTextField, userEmail)
+                  : null;
               controllerTextField.clear();
               hideKeyboard(context);
             },
@@ -51,9 +56,6 @@ class TextFieldChatPageBuildWidget extends StatelessWidget {
               Icons.send,
               color: kPrimaryColor,
             ),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
           ),
         ),
       ),
