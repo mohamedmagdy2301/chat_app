@@ -25,7 +25,7 @@ class LoginPage extends StatelessWidget {
         ),
       ),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color.fromARGB(55, 0, 0, 0),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Form(

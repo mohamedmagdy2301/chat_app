@@ -31,7 +31,7 @@ class TextFieldChatPageBuildWidget extends StatelessWidget {
         },
         decoration: InputDecoration(
           filled: true,
-          fillColor: const Color.fromARGB(173, 224, 224, 224),
+          fillColor: const Color.fromARGB(224, 234, 234, 234),
           hintText: 'Type a message...',
           hintStyle: const TextStyle(color: Color.fromARGB(255, 136, 136, 136)),
           contentPadding: const EdgeInsets.all(10),

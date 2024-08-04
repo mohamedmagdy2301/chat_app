@@ -5,14 +5,16 @@ class AppBarChatBuildWidget extends StatelessWidget
     implements PreferredSizeWidget {
   const AppBarChatBuildWidget({
     super.key,
+    required this.userEmail,
   });
+  final String userEmail;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text(
-        'Chat App',
-        style: TextStyle(
+      title: Text(
+        userEmail.substring(0, userEmail.indexOf('@')),
+        style: const TextStyle(
           color: Colors.white,
           fontSize: 30,
           fontWeight: FontWeight.w800,

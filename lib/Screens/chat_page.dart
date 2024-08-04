@@ -25,7 +25,7 @@ class ChatPage extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: const AppBarChatBuildWidget(),
+        appBar: AppBarChatBuildWidget(userEmail: userEmail),
         body: Column(
           children: [
             Expanded(
