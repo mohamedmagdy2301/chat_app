@@ -1,3 +1,4 @@
+import 'package:chat_app/Core/convert24_12.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -8,11 +9,18 @@ StreamBuilder<QuerySnapshot<Object?>> showMessageInListViewFromFireBase(
   return StreamBuilder<QuerySnapshot>(
       stream: messages.orderBy('time', descending: true).snapshots(),
       builder: (context, snapshot) {
-        controllerScroll.animateTo(
-          0.0,
-          duration: const Duration(microseconds: 800000),
-          curve: Curves.easeIn,
-        );
+        // Check if the snapshot has data
+        if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
+          // Scroll to the top after the frame is built
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            controllerScroll.animateTo(
+              0.0,
+              duration:
+                  const Duration(milliseconds: 800), // Use milliseconds instead
+              curve: Curves.easeIn,
+            );
+          });
+        }
         return Padding(
           padding: const EdgeInsets.only(top: 5),
           child: ListView.builder(
@@ -54,7 +62,7 @@ class ChatBubbleBuildWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
         crossAxisAlignment:
             isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
@@ -65,18 +73,28 @@ class ChatBubbleBuildWidget extends StatelessWidget {
               color: isSender ? Colors.blue : Colors.grey[300],
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Text(
-              message,
-              style: TextStyle(
-                color: isSender ? Colors.white : Colors.black,
-              ),
-            ),
-          ),
-          const SizedBox(height: 5),
-          Text(
-            time,
-            style: TextStyle(
-              color: isSender ? Colors.white : Colors.black,
+            child: Column(
+              crossAxisAlignment:
+                  isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              children: [
+                Text(
+                  message,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: isSender ? Colors.white : Colors.black,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  convertTo12HourFormat(time),
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: isSender
+                        ? Colors.white
+                        : const Color.fromARGB(255, 79, 79, 79),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
