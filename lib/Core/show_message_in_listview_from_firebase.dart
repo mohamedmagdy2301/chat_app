@@ -1,4 +1,3 @@
-import 'package:chat_app/Widgets/chat_buble_build_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -38,4 +37,50 @@ StreamBuilder<QuerySnapshot<Object?>> showMessageInListViewFromFireBase(
           ),
         );
       });
+}
+
+class ChatBubbleBuildWidget extends StatelessWidget {
+  final String message;
+  final String time;
+  final bool isSender;
+
+  const ChatBubbleBuildWidget({
+    super.key,
+    required this.message,
+    required this.time,
+    required this.isSender,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment:
+            isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: isSender ? Colors.blue : Colors.grey[300],
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text(
+              message,
+              style: TextStyle(
+                color: isSender ? Colors.white : Colors.black,
+              ),
+            ),
+          ),
+          const SizedBox(height: 5),
+          Text(
+            time,
+            style: TextStyle(
+              color: isSender ? Colors.white : Colors.black,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

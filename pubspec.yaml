@@ -38,6 +38,12 @@ dependencies:
   firebase_core: ^3.2.0
   firebase_auth: ^5.1.2
   cloud_firestore: ^5.2.0
+  flutter_launcher_icons: ^0.14.1
+
+flutter_launcher_icons:
+  android: true
+  image_path: "assets/chat-bubble.png"
+  remove_alpha_ios: true
 
 dev_dependencies:
   flutter_test:
