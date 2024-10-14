@@ -21,15 +21,18 @@
 
 - **Login Page**: Allows users to log in with their email and password.
   
-![Screenshot](assets/Login_Screenshot.png)
-
 - **Register Page**: New users can create an account.
   
-![Screenshot](assets/Register_Screenshot.png)
 
 - **Chat Page**: Users can send and receive messages in real-time.
 
-![Screenshot](assets/Chat_Screenshot_1.png) ![Screenshot](assets/Chat_Screenshot_2.png)
+
+## Screenshots
+
+| Login Screen | Register Screen | Chat Screen 1 | Chat Screen 2 |
+|---|---|---|---|
+| ![Screenshot](assets/Login_Screenshot.png) | ![Screenshot](assets/Register_Screenshot.png) | ![Screenshot](assets/Chat_Screenshot_1.png)  |  ![Screenshot](assets/Chat_Screenshot_2.png) |
+
 
 ## Project Structure
 
